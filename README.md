@@ -14,6 +14,7 @@
 10. Publish and subscribe
 11. Testing
 12. Next steps
+
 ## 1. Creating an app
 ### [Creating your first app](https://www.meteor.com/tutorials/react/creating-an-app)
 In this tutorial, we are going to create a simple app to manage a 'to do' list and collaborate with others on those tasks. By the end, you should have a basic understanding of Meteor and its project structure.
@@ -42,6 +43,7 @@ You can play around with this default app for a bit before we continue. For exam
 >#### Newer JavaScript syntax
 >Meteor supports many newer JavaScript features, such as those in ECMAScript 2015 (ES6). If you haven't tried these next-generation JavaScript features yet, we recommend taking a look at [Luke Hoban's "ES6 features"](https://github.com/lukehoban/es6features#readme) to familiarize yourself with the newer syntax.
 Now that you have some experience editing the files in your Meteor app, let's start working on a simple todo list application. If you find a bug or error in the tutorial, please file an issue or submit a pull request [on GitHub](https://github.com/meteor/tutorials).
+
 ## 2. Components
 ### [Defining views with React components](https://www.meteor.com/tutorials/react/creating-an-app)
 To start working with React as our view library, let's add some NPM packages which will allow us to get started with React.
@@ -141,10 +143,16 @@ In our browser, the app should roughly look like the following
 >* This is task 1
 >* This is task 2
 >* This is task 3
+
 If your app doesn't look like this, use the GitHub link at the top right corner of each code snippet to see the entire file, and make sure your code matches the example.
-> Note: If encountering an error that states ```Target container is not a DOM element```, type the following into the command line within the project folder:
->```meteor remove blaze-html-templates```
->```meteor add static-html```
+> Note: If encountering a console error which states ```Target container is not a DOM element```, type the following into the command line within the project folder:
+> Credit:[phtn](https://github.com/meteor/meteor/issues/5580#issuecomment-231173103)
+>```
+>meteor remove blaze-html-templates
+>```
+>```
+>meteor add static-html
+>```
 #### HTML files define static content
 Meteor parses all of the HTML files in your app folder and identifies three top-level tags: <head>, <body>, and <template>.
 Everything inside any <head> tags is added to the ```head``` section of the HTML sent to the client, and everything inside <body> tags is added to the ```body``` section, just like in a regular HTML file.

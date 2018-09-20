@@ -2,7 +2,7 @@
 ###### Notes on Meteor's tutorial on creating a todo app that integrates both React and Meteor
 
 ## Contents
-1. Creating an app
+1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
 2. Components
 3. Collections
 4. Forms and events

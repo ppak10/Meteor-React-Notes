@@ -1,5 +1,5 @@
 # Meteor-Todo-App-Notes
-###### Notes on Meteor's tutorial on creating a todo app that integrates both React and Meteor
+###### Notes on [Meteor's tutorial](https://www.meteor.com/tutorials/react/creating-an-app) on creating a todo app that integrates both React and Meteor
 
 ## Contents
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
@@ -146,13 +146,13 @@ In our browser, the app should roughly look like the following
 
 If your app doesn't look like this, use the GitHub link at the top right corner of each code snippet to see the entire file, and make sure your code matches the example.
 > Note: If encountering a console error which states ```Target container is not a DOM element```, type the following into the command line within the project folder:
-> Credit:[phtn](https://github.com/meteor/meteor/issues/5580#issuecomment-231173103)
 >```
 >meteor remove blaze-html-templates
 >```
 >```
 >meteor add static-html
 >```
+> Credit: [phtn](https://github.com/meteor/meteor/issues/5580#issuecomment-231173103)
 #### HTML files define static content
 Meteor parses all of the HTML files in your app folder and identifies three top-level tags: <head>, <body>, and <template>.
 Everything inside any <head> tags is added to the ```head``` section of the HTML sent to the client, and everything inside <body> tags is added to the ```body``` section, just like in a regular HTML file.

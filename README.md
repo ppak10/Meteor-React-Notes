@@ -292,3 +292,68 @@ header .hide-completed {
 }
 ```
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
+
+## 2. Collections
+### [Storing tasks in a collection](https://www.meteor.com/tutorials/react/collections)
+Collections are Meteor's way of storing persistent data. The special thing about collections in Meteor is that they can be accessed from both the server and the client, making it easy to write view logic without having to write a lot of server code. They also update themselves automatically, so a view component backed by a collection will automatically display the most up-to-date data.
+You can read more about collections in the [Collections article](https://guide.meteor.com/collections.html) of the Meteor Guide.
+Creating a new collection is as easy as calling ```MyCollection = new Mongo.Collection("my-collection");``` in your JavaScript. On the server, this sets up a MongoDB collection called ```my-collection```; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
+To create the collection, we define a new ```tasks``` module that creates a Mongo collection and exports it:
+##### Create tasks collection ```imports/api/tasks.js```
+```javascript
+import { Mongo } from 'meteor/mongo';
+
+export const Tasks = new Mongo.Collection('tasks');
+```
+Notice that we place this file in a new ```imports/api``` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](https://guide.meteor.com/structure.html) of the Meteor Guide.
+We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
+##### Load tasks collection on the server ```server/main.js```
+```javascript
+import '../imports/api/tasks.js';
+```
+#### Using data from a collection inside a React component
+To use data from a Meteor collection inside a React component, we can use an Atmosphere package react-meteor-data which allows us to create a "data container" to feed Meteor's reactive data into React's component hierarchy.
+```
+meteor add react-meteor-data
+```
+To use ```react-meteor-data```, we need to wrap our component in a container using the ```withTracker``` Higher Order Component:
+##### Modify App component to get tasks from collection ```imports/App.js```
+```javascript
+import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { Tasks } from '../api/tasks.js';
+
+import Task from './Task.js';
+
+// App component - represents the whole app
+class App extends Component {
+  renderTasks() {
+    return this.props.tasks.map((task) => (
+      <Task key={task._id} task={task} />
+    ));
+  }
+...some lines skipped...
+    );
+  }
+}
+
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}).fetch(),
+  };
+})(App);
+```
+The wrapped ```App``` component fetches tasks from the ```Tasks``` collection and supplies them to the underlying ```App``` component it wraps as the ```tasks``` prop. It does this in a reactive way, so that when the contents of the database change, the ```App``` re-renders, as we'll soon see!
+When you make these changes to the code, you'll notice that the tasks that used to be in the todo list have disappeared. That's because our database is currently empty — we need to insert some tasks!
+#### Inserting tasks from the server-side database console
+Items inside collections are called documents. Let's use the server database console to insert some documents into our collection. In a new terminal tab, go to your app directory and type:
+```
+meteor mongo
+```
+This opens a console into your app's local development database. Into the prompt, type:
+```
+db.tasks.insert({ text: "Hello world!", createdAt: new Date() });
+```
+In your web browser, you will see the UI of your app immediately update to show the new task. You can see that we didn't have to write any code to connect the server-side database to our front-end code — it just happened automatically.
+Insert a few more tasks from the database console with different text. In the next step, we'll see how to add functionality to our app's UI so that we can add tasks without using the database console.

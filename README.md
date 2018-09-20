@@ -55,7 +55,7 @@ meteor npm install --save react react-dom
 #### Replace the starter code
 To get started, let's replace the code of the default starter app. Then we'll talk about what it does.
 First, replace the content of the initial HTML file:
-##### Replace starter HTML code ```client/main.html```
+##### Replace starter HTML code [```client/main.html```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/simple-todos/client/main.html)
 ```html
 <head>
   <title>Todo List</title>
@@ -66,7 +66,7 @@ First, replace the content of the initial HTML file:
 </body>
 ```
 Second, replace the contents of ```client/main.js``` with:
-##### Replace starter JS ```client/main.js```
+##### Replace starter JS [```client/main.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/simple-todos/client/main.js)
 ```javascript
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
@@ -80,7 +80,7 @@ Meteor.startup(() => {
 ```
 Now we need to create a new directory called ```imports```, a specially-named directory which will behave differently than other directories in the project. Files outside the ```imports``` directory will be loaded automatically when the Meteor server starts, while files inside the ```imports``` directory will only load when an ```import``` statement is used to load them.
 After creating the ```imports``` directory, we will create two new files inside it:
-##### Create App component ```imports/ui/App.js```
+##### Create App component [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 
@@ -117,7 +117,7 @@ export default class App extends Component {
   }
 }
 ```
-##### Create Task component ```imports/ui/Task.js```
+##### Create Task component [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/simple-todos/imports/ui/Task.js)
 ```javascript
 import React, { Component } from 'react';
 
@@ -162,7 +162,7 @@ In React, view components are subclasses of ```React.Component``` (which we impo
 #### Return markup from the render method with JSX
 The most important method in every React component is ```render()```, which is called by React to get a description of the HTML that this component should display. The HTML content is written using a JavaScript extension called JSX, which kind of looks like writing HTML inside your JavaScript. You can see some obvious differences already: in JSX, you use the ```className``` attribute instead of ```class```. An important thing to know about JSX is that it isn't a templating language like Spacebars or Angular - it actually compiles directly to regular JavaScript. Read more about JSX [in the React docs](https://reactjs.org/docs/jsx-in-depth.html).
 JSX is supported by the ```ecmascript``` Atmosphere package, which is included in all new Meteor apps by default.
-##### Add CSS ```client/main.css```
+##### Add CSS [```client/main.css```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/simple-todos/client/main.css)
 ```css
 /* CSS declarations go here */
 body {

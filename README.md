@@ -3,7 +3,7 @@
 
 ## Contents
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
-2. Components
+2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
 3. Collections
 4. Forms and events
 5. Update and remove

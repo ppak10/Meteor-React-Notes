@@ -8,8 +8,8 @@
 4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
 5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/5-update-and-remove#5-update-and-remove)
 6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/6-running-on-mobile#6-running-on-mobile)
-7. Temporary UI state
-8. Adding user accounts
+7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/7-temporary-ui-state#7-temporary-ui-state)
+8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/README.md#8-adding-user-account)
 9. Security with methods
 10. Publish and subscribe
 11. Testing
@@ -636,7 +636,7 @@ meteor add accounts-ui accounts-password
 ```
 #### Wrapping a Blaze component in React
 To use the Blaze UI component from the ```accounts-ui``` package, we need to wrap it in a React component. To do so, let's create a new component called ```AccountsUIWrapper``` in a new file:
-##### Create Accounts UI wrapper component ```imports/ui/AccountsUIWrapper.js```
+##### Create Accounts UI wrapper component [```imports/ui/AccountsUIWrapper.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/AccountsUIWrapper.js)
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -660,7 +660,7 @@ export default class AccountsUIWrapper extends Component {
 }
 ```
 Let's include the component we just defined inside App:
-##### Include sign in form ```imports/ui/App.js```
+##### Include sign in form [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/App.js)
 ```javascript
 import { Tasks } from '../api/tasks.js';
 
@@ -680,7 +680,7 @@ class App extends Component {
               type="text"
 ```
 Then, add the following code to configure the accounts UI to use usernames instead of email addresses:
-##### Configure accounts-ui ```imports/startup/accounts-config.js```
+##### Configure accounts-ui [```imports/startup/accounts-config.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/startup/accounts-config.js)
 ```javascript
 import { Accounts } from 'meteor/accounts-base';
 
@@ -689,7 +689,7 @@ Accounts.ui.config({
 });
 ```
 We also need to import that configuration code in our client side entrypoint:
-##### Import accounts configuration ```client/main.js```
+##### Import accounts configuration [```client/main.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/client/main.js)
 ```javascript
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
@@ -707,7 +707,7 @@ To do this, we will add two new fields to the ```tasks``` collection:
 1. ```owner``` - the ```_id``` of the user that created the task.
 2. ```username``` - the ```username``` of the user that created the task. We will save the username directly in the task object so that we don't have to look up the user every time we display the task.
 First, let's add some code to save these fields into the ```handleSubmit``` event handler:
-##### Update insert to save username and owner ```imports/ui/App.js```
+##### Update insert to save username and owner [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -726,7 +726,7 @@ import { Tasks } from '../api/tasks.js';
     // Clear form
 ```
 Modify the data container to get information about the currently logged in user:
-##### Update data container to return data about user ```imports/ui/App.js```
+##### Update data container to return data about user [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/App.js)
 ```javascript
 return {
   tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
@@ -736,7 +736,7 @@ return {
 })(App);
 ```
 Then, in our render method, add a conditional statement to only show the form when there is a logged in user:
-##### Wrap new task form to only show when logged in ```imports/ui/App.js```
+##### Wrap new task form to only show when logged in [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/App.js)
 ```javascript
 
          <AccountsUIWrapper />
@@ -755,16 +755,16 @@ Then, in our render method, add a conditional statement to only show the form wh
        <ul>
 ```
 Finally, add a statement to display the ```username``` field on each task right before the text:
-##### Update Task component to show username ```imports/ui/Task.js```
+##### Update Task component to show username [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/simple-todos/imports/ui/Task.js)
 ```javascript
-onClick={this.toggleChecked.bind(this)}
-/>
+        onClick={this.toggleChecked.bind(this)}
+      />
 
-<span className="text">
-<strong>{this.props.task.username}</strong>: {this.props.task.text}
-</span>
-</li>
-);
+      <span className="text">
+        <strong>{this.props.task.username}</strong>: {this.props.task.text}
+      </span>
+    </li>
+  );
 }
 ```
 In your browser, add some tasks and notice that your username shows up. Old tasks that we added before this step won't have usernames attached; you can just delete them.

@@ -10,7 +10,7 @@
 6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/6-running-on-mobile#6-running-on-mobile)
 7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/7-temporary-ui-state#7-temporary-ui-state)
 8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/README.md#8-adding-user-account)
-9. Security with methods
+9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/9-security-with-methods#9-security-with-methods)
 10. Publish and subscribe
 11. Testing
 12. Next steps
@@ -786,7 +786,7 @@ meteor remove insecure
 If you try to use the app after removing this package, you will notice that none of the inputs or buttons work anymore. This is because all client-side database permissions have been revoked. Now we need to rewrite some parts of our app to use methods.
 #### Defining methods
 First, we need to define some methods. We need one method for each database operation we want to perform on the client. Methods should be defined in code that is executed on the client and the server - we will discuss this a bit later in the section titled Optimistic UI.
-##### Add methods for add, remove, update task ```imports/api/tasks.js```
+##### Add methods for add, remove, update task [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/9-security-with-methods/simple-todos/imports/api/tasks.js)
 ```javascript
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
@@ -824,7 +824,7 @@ Meteor.methods({
 });
 ```
 Now that we have defined our methods, we need to update the places we were operating on the collection to use the methods instead:
-##### Update App component to use tasks.insert.method ```imports/ui/App.js```
+##### Update App component to use tasks.insert.method [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/9-security-with-methods/simple-todos/imports/ui/App.js)
 ```javascript
 // Find the text field via the React ref
 const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
@@ -834,7 +834,7 @@ Meteor.call('tasks.insert', text);
 // Clear form
 ReactDOM.findDOMNode(this.refs.textInput).value = '';
 ```
-##### Replace update and remove with methods ```imports/ui/Task.js```
+##### Replace update and remove with methods [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/9-security-with-methods/simple-todos/imports/ui/Task.js)
 ```javascript
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';

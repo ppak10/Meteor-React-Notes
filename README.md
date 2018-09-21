@@ -4,7 +4,7 @@
 ## Contents
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
 2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
-3. Collections
+3. [Collections](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/README.md#3-collections)
 4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
 5. Update and remove
 6. Running on mobile

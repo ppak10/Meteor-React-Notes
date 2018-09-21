@@ -293,7 +293,7 @@ header .hide-completed {
 ```
 Now that you've added the CSS, the app should look a lot nicer. Check in your browser to see that the new styles have loaded.
 
-## 2. Collections
+## 3. Collections
 ### [Storing tasks in a collection](https://www.meteor.com/tutorials/react/collections)
 Collections are Meteor's way of storing persistent data. The special thing about collections in Meteor is that they can be accessed from both the server and the client, making it easy to write view logic without having to write a lot of server code. They also update themselves automatically, so a view component backed by a collection will automatically display the most up-to-date data.
 You can read more about collections in the [Collections article](https://guide.meteor.com/collections.html) of the Meteor Guide.

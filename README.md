@@ -317,7 +317,7 @@ To use data from a Meteor collection inside a React component, we can use an Atm
 meteor add react-meteor-data
 ```
 To use ```react-meteor-data```, we need to wrap our component in a container using the ```withTracker``` Higher Order Component:
-##### Modify App component to get tasks from collection [```imports/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/api/tasks.js)
+##### Modify App component to get tasks from collection [```imports/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';

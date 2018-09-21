@@ -5,7 +5,7 @@
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
 2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
 3. Collections
-4. Forms and events
+4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
 5. Update and remove
 6. Running on mobile
 7. Temporary UI state
@@ -299,7 +299,7 @@ Collections are Meteor's way of storing persistent data. The special thing about
 You can read more about collections in the [Collections article](https://guide.meteor.com/collections.html) of the Meteor Guide.
 Creating a new collection is as easy as calling ```MyCollection = new Mongo.Collection("my-collection");``` in your JavaScript. On the server, this sets up a MongoDB collection called ```my-collection```; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
 To create the collection, we define a new ```tasks``` module that creates a Mongo collection and exports it:
-##### Create tasks collection ```imports/api/tasks.js```
+##### Create tasks collection [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/api/tasks.js)
 ```javascript
 import { Mongo } from 'meteor/mongo';
 
@@ -307,7 +307,7 @@ export const Tasks = new Mongo.Collection('tasks');
 ```
 Notice that we place this file in a new ```imports/api``` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](https://guide.meteor.com/structure.html) of the Meteor Guide.
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
-##### Load tasks collection on the server ```server/main.js```
+##### Load tasks collection on the server [```server/main.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/server/main.js)
 ```javascript
 import '../imports/api/tasks.js';
 ```
@@ -317,7 +317,7 @@ To use data from a Meteor collection inside a React component, we can use an Atm
 meteor add react-meteor-data
 ```
 To use ```react-meteor-data```, we need to wrap our component in a container using the ```withTracker``` Higher Order Component:
-##### Modify App component to get tasks from collection ```imports/App.js```
+##### Modify App component to get tasks from collection [```imports/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -362,7 +362,7 @@ Insert a few more tasks from the database console with different text. In the ne
 ### [Adding tasks with a form](https://www.meteor.com/tutorials/react/forms-and-events)
 In this step, we'll add an input field for users to add tasks to the list.
 First, let's add a form to our ```App``` component:
-##### Add form for new tasks ```imports/ui/App.js```
+##### Add form for new tasks [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/simple-todos/imports/ui/App.js)
 ```javascript
 <div className="container">
   <header>
@@ -382,7 +382,7 @@ First, let's add a form to our ```App``` component:
 >Tip: You can add comments to your JSX code by wrapping them in ```{/* ... */}```
 You can see that the ```form``` element has an ```onSubmit``` attribute that references a method on the component called ```handleSubmit```. In React, this is how you listen to browser events, like the submit event on the form. The ```input``` element has a ```ref``` property which will let us easily access this element later.
 Let's add a ```handleSubmit``` method to our ```App``` component:
-##### Add handleSubmit method to App component ```imports/ui/App.js```
+##### Add handleSubmit method to App component [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -421,7 +421,7 @@ Being able to insert anything into the database from the client isn't very secur
 #### Sorting our tasks
 Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
 We can solve this by sorting the results using the ```createdAt``` field that is automatically added by our new code. Just add a sort option to the ```find``` call inside the data container wrapping the ```App``` component:
-##### Update data container to sort tasks by time ```imports/ui/App.js```
+##### Update data container to sort tasks by time [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/simple-todos/imports/ui/App.js)
 ```javascript
 export default withTracker(() => {
   return {

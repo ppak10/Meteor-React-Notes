@@ -6,7 +6,7 @@
 2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
 3. [Collections](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/README.md#3-collections)
 4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
-5. Update and remove
+5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/5-update-and-remove#5-update-and-remove)
 6. Running on mobile
 7. Temporary UI state
 8. Adding user accounts
@@ -436,7 +436,7 @@ In the next step, we'll add some very important todo list features: checking off
 ### [Checking off and deleting tasks](https://www.meteor.com/tutorials/react/update-and-remove)
 Until now, we have only interacted with a collection by inserting documents. Now, we will learn how to update and remove them.
 Let's add two new elements to our ```task``` component, a checkbox and a delete button, with event handlers for both:
-##### Update Task component to add features ```imports/ui/Task.js```
+##### Update Task component to add features [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/5-update-and-remove/simple-todos/imports/ui/Task.js)
 ```javascript
 import React, { Component } from 'react';
 

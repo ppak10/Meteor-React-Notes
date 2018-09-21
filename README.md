@@ -11,7 +11,7 @@
 7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/7-temporary-ui-state#7-temporary-ui-state)
 8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/README.md#8-adding-user-account)
 9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/9-security-with-methods#9-security-with-methods)
-10. Publish and subscribe
+10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/10-publish-and-subscribe#10-publish-and-subscribe)
 11. Testing
 12. Next steps
 
@@ -876,7 +876,7 @@ meteor remove autopublish
 ```
 When the app refreshes, the task list will be empty. Without the ```autopublish``` package, we will have to specify explicitly what the server sends to the client. The functions in Meteor that do this are ```Meteor.publish``` and ```Meteor.subscribe```.
 First lets add a publication for all tasks:
-##### Add publication for tasks ```imports/api/tasks.js```
+##### Add publication for tasks [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/api/tasks.js)
 ```javascript
 
 export const Tasks = new Mongo.Collection('tasks');
@@ -893,7 +893,7 @@ Meteor.methods({
    check(text, String);
 ```
 And then let's subscribe to that publication when the ```App``` component is created:
-##### Subscribe to tasks in App container ```imports/ui/App.js```
+##### Subscribe to tasks in App container [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/ui/App.js)
 ```javascript
 }
 
@@ -909,7 +909,7 @@ Calling ```Meteor.publish``` on the server registers a publication named ```"tas
 #### Adding a button to make tasks private
 Let's add another property to tasks called "private" and a button for users to mark a task as private. This button should only show up for the owner of a task. We want the label to indicate the current status: public or private.
 First, we need to add a new method that we can call to set a task's private status:
-##### Add tasks.setPrivate method ```imports/api/tasks.js```
+##### Add tasks.setPrivate method [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/api/tasks.js)
 ```javascript
 
    Tasks.update(taskId, { $set: { checked: setChecked } });
@@ -930,7 +930,7 @@ First, we need to add a new method that we can call to set a task's private stat
 });
 ```
 Now, we need to pass a new property to the ```Task``` to decide whether we want to show the private button; the button should show up only if the currently logged in user owns this task:
-##### Update renderTasks to pass in showPrivateButton ```imports/ui/App.js```
+##### Update renderTasks to pass in showPrivateButton [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/ui/App.js)
 ```javascript
 if (this.state.hideCompleted) {
   filteredTasks = filteredTasks.filter(task => !task.checked);
@@ -952,7 +952,7 @@ return filteredTasks.map((task) => {
 render() {
 ```
 Let's add the button, using this new prop to decide whether it should be displayed:
-##### Add private button, shown only to owner ```imports/ui/Task.js```
+##### Add private button, shown only to owner [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/ui/Task.js)
 ```javascript
 onClick={this.toggleChecked.bind(this)}
 />
@@ -968,7 +968,7 @@ onClick={this.toggleChecked.bind(this)}
 </span>
 ```
 We need to define the event handler called by the button:
-##### Add private button event handler to Task ```imports/ui/Task.js```
+##### Add private button event handler to Task [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/ui/Task.js)
 ```javascript
   Meteor.call('tasks.remove', this.props.task._id);
 }
@@ -986,7 +986,7 @@ One last thing, let's update the class of the ```<li>``` element in the ```Task`
 meteor npm install --save classnames
 ```
 Then we'll use that package to choose a class based on the task are rendering:
-##### Add private className to Task when needed ```imports/ui/Task.js```
+##### Add private className to Task when needed [```imports/ui/Task.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/ui/Task.js)
 ```javascript
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
@@ -1008,7 +1008,7 @@ import { Tasks } from '../api/tasks.js';
 ```
 #### Selectively publishing tasks based on privacy status
 Now that we have a way of setting which tasks are private, we should modify our publication function to only send the tasks that a user is authorized to see:
-##### Only publish tasks the current user can see ```imports/api/tasks.js```
+##### Only publish tasks the current user can see [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/api/tasks.js)
 ```javascript
 if (Meteor.isServer) {
  // This code only runs on the server
@@ -1026,7 +1026,7 @@ if (Meteor.isServer) {
 To test that this functionality works, you can use your browser's private browsing mode to log in as a different user. Put the two windows side by side and mark a task private to confirm that the other user can't see it. Now make it public again and it will reappear!
 #### Extra method security
 In order to finish up our private task feature, we need to add checks to our ```deleteTask``` and ```setChecked``` methods to make sure only the task owner can delete or check off a private task:
-##### Add extra security to methods ```imports/api/tasks.js```
+##### Add extra security to methods [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/10-publish-and-subscribe/simple-todos/imports/api/tasks.js)
 ```javascript
 'tasks.remove'(taskId) {
   check(taskId, String);

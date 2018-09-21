@@ -8,7 +8,7 @@
 4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
 5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/5-update-and-remove#5-update-and-remove)
 6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/6-running-on-mobile#6-running-on-mobile)
-7. Temporary UI state
+7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/7-temporary-ui-state#7-temporary-ui-state)
 8. Adding user accounts
 9. Security with methods
 10. Publish and subscribe
@@ -532,3 +532,96 @@ meteor run ios-device
 ```
 This will open Xcode with a project for your iOS app. You can use Xcode to then launch the app on any device or simulator that Xcode supports.
 Now that we have seen how easy it is to run our app on mobile, let's get to adding some more features.
+
+## 7. Temporary UI state
+### [Storing temporary UI data in component state](https://www.meteor.com/tutorials/react/temporary-ui-state)
+In this step, we'll add a client-side data filtering feature to our app, so that users can check a box to only see incomplete tasks. We're going to learn how to use React's component state to store temporary information that is only used on the client.
+First, we need to add a checkbox to our ```App``` component:
+##### Add hide completed checkbox to App component [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+<header>
+  <h1>Todo List</h1>
+
+  <label className="hide-completed">
+    <input
+      type="checkbox"
+      readOnly
+      checked={this.state.hideCompleted}
+      onClick={this.toggleHideCompleted.bind(this)}
+    />
+    Hide Completed Tasks
+  </label>
+
+  <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+    <input
+      type="text"
+```
+You can see that it reads from ```this.state.hideCompleted```. React components have a special field called ```state``` where you can store encapsulated component data. We'll need to initialize the value of ```this.state.hideCompleted``` in the component's constructor:
+##### Add initial state to App component [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+// App component - represents the whole app
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hideCompleted: false,
+    };
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+```
+We can update ```this.state``` from an event handler by calling ```this.setState```, which will update the state property asynchronously and then cause the component to re-render:
+##### Add toggleHideCompleted handler to App [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+ReactDOM.findDOMNode(this.refs.textInput).value = '';
+}
+
+toggleHideCompleted() {
+this.setState({
+  hideCompleted: !this.state.hideCompleted,
+});
+}
+
+renderTasks() {
+return this.props.tasks.map((task) => (
+  <Task key={task._id} task={task} />
+```
+Now, we need to update our ```renderTasks``` function to filter out completed tasks when ```this.state.hideCompleted``` is true:
+##### Filter tasks in renderTasks [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+}
+
+renderTasks() {
+  let filteredTasks = this.props.tasks;
+  if (this.state.hideCompleted) {
+    filteredTasks = filteredTasks.filter(task => !task.checked);
+  }
+  return filteredTasks.map((task) => (
+    <Task key={task._id} task={task} />
+  ));
+}
+```
+Now if you check the box, the task list will only show tasks that haven't been completed.
+#### One more feature: Showing a count of incomplete tasks
+Now that we have written a query that filters out completed tasks, we can use the same query to display a count of the tasks that haven't been checked off. To do this we need to fetch a count in our data container and add a line to our ```render``` method. Since we already have the data in the client-side collection, adding this extra count doesn't involve asking the server for anything.
+##### Update data container to return incompleteCount [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+  };
+})(App);
+```
+##### Display incompleteCount in the header [```imports/ui/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/7-temporary-ui-state/simple-todos/imports/ui/App.js)
+```javascript
+return (
+  <div className="container">
+    <header>
+      <h1>Todo List ({this.props.incompleteCount})</h1>
+
+      <label className="hide-completed">
+        <input
+```

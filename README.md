@@ -357,3 +357,77 @@ db.tasks.insert({ text: "Hello world!", createdAt: new Date() });
 ```
 In your web browser, you will see the UI of your app immediately update to show the new task. You can see that we didn't have to write any code to connect the server-side database to our front-end code — it just happened automatically.
 Insert a few more tasks from the database console with different text. In the next step, we'll see how to add functionality to our app's UI so that we can add tasks without using the database console.
+
+## 4. Forms and events
+### [Adding tasks with a form](https://www.meteor.com/tutorials/react/forms-and-events)
+In this step, we'll add an input field for users to add tasks to the list.
+First, let's add a form to our ```App``` component:
+##### Add form for new tasks ```imports/ui/App.js```
+```javascript
+<div className="container">
+  <header>
+    <h1>Todo List</h1>
+
+    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+      <input
+        type="text"
+        ref="textInput"
+        placeholder="Type to add new tasks"
+      />
+    </form>
+  </header>
+
+  <ul>
+```
+>Tip: You can add comments to your JSX code by wrapping them in ```{/* ... */}```
+You can see that the ```form``` element has an ```onSubmit``` attribute that references a method on the component called ```handleSubmit```. In React, this is how you listen to browser events, like the submit event on the form. The ```input``` element has a ```ref``` property which will let us easily access this element later.
+Let's add a ```handleSubmit``` method to our ```App``` component:
+##### Add handleSubmit method to App component ```imports/ui/App.js```
+```javascript
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { Tasks } from '../api/tasks.js';
+...some lines skipped...
+
+// App component - represents the whole app
+class App extends Component {
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+
+    Tasks.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+  }
+
+  renderTasks() {
+    return this.props.tasks.map((task) => (
+      <Task key={task._id} task={task} />
+```
+Now your app has a new input field. To add a task, just type into the input field and hit enter. If you open a new browser window and open the app again, you'll see that the list is automatically synchronized between all clients.
+#### Listening for events in React
+As you can see, in React you handle DOM events by directly referencing a method on the component. Inside the event handler, you can reference elements from the component by giving them a ```ref``` property and using ```ReactDOM.findDOMNode```. Read more about the different kinds of events React supports, and how the event system works, in the [React docs](https://reactjs.org/docs/events.html).
+#### Inserting into a collection
+Inside the event handler, we are adding a task to the ```tasks``` collection by calling ```Tasks.insert()```. We can assign any properties to the task object, such as the time created, since we don't ever have to define a schema for the collection.
+Being able to insert anything into the database from the client isn't very secure, but it's okay for now. In step 10 we'll learn how we can make our app secure and restrict how data is inserted into the database.
+#### Sorting our tasks
+Currently, our code displays all new tasks at the bottom of the list. That's not very good for a task list, because we want to see the newest tasks first.
+We can solve this by sorting the results using the ```createdAt``` field that is automatically added by our new code. Just add a sort option to the ```find``` call inside the data container wrapping the ```App``` component:
+##### Update data container to sort tasks by time ```imports/ui/App.js```
+```javascript
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+  };
+})(App);
+```
+Let's go back to the browser and make sure this worked: any new tasks that you add should appear at the top of the list, rather than at the bottom.
+In the next step, we'll add some very important todo list features: checking off and deleting tasks.

@@ -4,7 +4,7 @@
 ## Contents
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
 2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
-3. Collections
+3. [Collections](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/3-collections#3-collections)
 4. Forms and events
 5. Update and remove
 6. Running on mobile
@@ -299,7 +299,7 @@ Collections are Meteor's way of storing persistent data. The special thing about
 You can read more about collections in the [Collections article](https://guide.meteor.com/collections.html) of the Meteor Guide.
 Creating a new collection is as easy as calling ```MyCollection = new Mongo.Collection("my-collection");``` in your JavaScript. On the server, this sets up a MongoDB collection called ```my-collection```; on the client, this creates a cache connected to the server collection. We'll learn more about the client/server divide in step 12, but for now we can write our code with the assumption that the entire database is present on the client.
 To create the collection, we define a new ```tasks``` module that creates a Mongo collection and exports it:
-##### Create tasks collection ```imports/api/tasks.js```
+##### Create tasks collection [```imports/api/tasks.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/api/tasks.js)
 ```javascript
 import { Mongo } from 'meteor/mongo';
 
@@ -307,7 +307,7 @@ export const Tasks = new Mongo.Collection('tasks');
 ```
 Notice that we place this file in a new ```imports/api``` directory. This is a sensible place to store API-related files for the application. We will start by putting "collections" here and later we will add "publications" that read from them and "methods" that write to them. You can read more about how to structure your code in the [Application Structure article](https://guide.meteor.com/structure.html) of the Meteor Guide.
 We need to import that module on the server (this creates the MongoDB collection and sets up the plumbing to get the data to the client):
-##### Load tasks collection on the server ```server/main.js```
+##### Load tasks collection on the server [```server/main.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/server/main.js)
 ```javascript
 import '../imports/api/tasks.js';
 ```
@@ -317,7 +317,7 @@ To use data from a Meteor collection inside a React component, we can use an Atm
 meteor add react-meteor-data
 ```
 To use ```react-meteor-data```, we need to wrap our component in a container using the ```withTracker``` Higher Order Component:
-##### Modify App component to get tasks from collection ```imports/App.js```
+##### Modify App component to get tasks from collection [```imports/App.js```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/3-collections/simple-todos/imports/ui/App.js)
 ```javascript
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';

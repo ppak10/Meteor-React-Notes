@@ -12,7 +12,7 @@
 8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/README.md#8-adding-user-account)
 9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/9-security-with-methods#9-security-with-methods)
 10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/10-publish-and-subscribe#10-publish-and-subscribe)
-11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/11-testing#10-testing)
+11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/11-testing#11-testing)
 12. Next steps
 
 ## 1. Creating an app

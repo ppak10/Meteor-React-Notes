@@ -9,7 +9,7 @@
 5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes#5-update-and-remove)
 6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes#6-running-on-mobile)
 7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes#7-temporary-ui-state)
-8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes#8-adding-user-accounts)
+8. [Adding user account](https://github.com/ppak10/Meteor-Todo-App-Notes#8-adding-user-account)
 9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes#9-security-with-methods)
 10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes#10-publish-and-subscribe)
 11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes#11-testing)

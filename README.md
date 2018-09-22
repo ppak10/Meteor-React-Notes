@@ -1194,7 +1194,7 @@ Start by adding the Less package by typing the command:
 meteor add less
 ```
 Then create a new file ```main.less``` in the client folder and copy the contents from ```main.css``` and paste them in this new file
-##### Add main.less file ```client/main.less```
+##### Add main.less file [```client/main.less```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/master/simple-todos/client/main.less)
 ```css
 body {
   font-family: sans-serif;
@@ -1301,7 +1301,7 @@ header .hide-completed {
 @import "../imports/ui/components/li/li.less";
 ```
 After creating the ```main.less``` file, create a new directory in ```imports/ui``` for ```components``` and ```components/li```. Here we'll add the file ```li.less``` so that ```@import "../imports/ui/components/li/li.less"``` is able to import the relavent list element CSS data to the ```main.less``` file.
-##### Create file for li CSS data ```imports/ui/components/li/li.less```
+##### Create file for li CSS data [```imports/ui/components/li/li.less```](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/master/simple-todos/imports/ui/components/li/li.less)
 ```css
 li {
   position: relative;

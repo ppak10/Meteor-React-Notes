@@ -13,7 +13,7 @@
 9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/9-security-with-methods#9-security-with-methods)
 10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/10-publish-and-subscribe#10-publish-and-subscribe)
 11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/11-testing#11-testing)
-12. Next steps
+12. [Next steps](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/12-next-steps#12-next-steps)
 
 ## 1. Creating an app
 ### [Creating your first app](https://www.meteor.com/tutorials/react/creating-an-app)

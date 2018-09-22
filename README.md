@@ -14,6 +14,7 @@
 10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes#10-publish-and-subscribe)
 11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes#11-testing)
 12. [Next steps](https://github.com/ppak10/Meteor-Todo-App-Notes#12-next-steps)
+13. [Additional Notes](https://github.com/ppak10/Meteor-Todo-App-Notes#12-additional-notes)
 
 ## 1. Creating an app
 ### [Creating your first app](https://www.meteor.com/tutorials/react/creating-an-app)
@@ -1160,3 +1161,30 @@ Here are some options for where you can go next:
 1. Read the [Meteor Guide](http://guide.meteor.com/) to learn about best practices and useful community packages
 2. Check out the [complete documentation](https://docs.meteor.com/)
 3. Explore additional Meteor tutorials like [WhatsApp clone](http://www.angular-meteor.com/tutorials/whatsapp/meteor/bootstrapping) and [Intermediate Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V)
+
+## 13. Additional notes
+### [Other encountered bugs and features]
+When running the server, the console may output something along the lines of:
+```
+W20180921-20:45:38.463(-4)? (STDERR) Note: you are using a pure-JavaScript implementation of bcrypt.
+W20180921-20:45:38.590(-4)? (STDERR) While this implementation will work correctly, it is known to be
+W20180921-20:45:38.591(-4)? (STDERR) approximately three times slower than the native implementation.
+W20180921-20:45:38.592(-4)? (STDERR) In order to use the native implementation instead, run
+W20180921-20:45:38.592(-4)? (STDERR)
+W20180921-20:45:38.593(-4)? (STDERR)   meteor npm install --save bcrypt
+W20180921-20:45:38.593(-4)? (STDERR)
+W20180921-20:45:38.594(-4)? (STDERR) in the root directory of your application.
+I20180921-20:45:38.811(-4)? ** You've set up some data subscriptions with Meteor.publish(), but
+I20180921-20:45:38.812(-4)? ** you still have autopublish turned on. Because autopublish is still
+I20180921-20:45:38.813(-4)? ** on, your Meteor.publish() calls won't have much effect. All data
+I20180921-20:45:38.813(-4)? ** will still be sent to all clients.
+I20180921-20:45:38.814(-4)? **
+I20180921-20:45:38.815(-4)? ** Turn off autopublish by removing the autopublish package:
+I20180921-20:45:38.815(-4)? **
+I20180921-20:45:38.815(-4)? **   $ meteor remove autopublish
+I20180921-20:45:38.816(-4)? **
+I20180921-20:45:38.816(-4)? ** .. and make sure you have Meteor.publish() and Meteor.subscribe() calls
+I20180921-20:45:38.817(-4)? ** for each collection that you want clients to see.
+I20180921-20:45:38.817(-4)?
+```
+>Note: In this case it may be better NOT to run the command to use the native implementation of bcrypt as it causes the application to crash

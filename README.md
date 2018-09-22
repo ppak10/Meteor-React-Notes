@@ -14,7 +14,7 @@
 10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes#10-publish-and-subscribe)
 11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes#11-testing)
 12. [Next steps](https://github.com/ppak10/Meteor-Todo-App-Notes#12-next-steps)
-13. [Additional Notes](https://github.com/ppak10/Meteor-Todo-App-Notes#12-additional-notes)
+13. [Additional Notes](https://github.com/ppak10/Meteor-Todo-App-Notes#13-additional-notes)
 
 ## 1. Creating an app
 ### [Creating your first app](https://www.meteor.com/tutorials/react/creating-an-app)
@@ -1163,7 +1163,7 @@ Here are some options for where you can go next:
 3. Explore additional Meteor tutorials like [WhatsApp clone](http://www.angular-meteor.com/tutorials/whatsapp/meteor/bootstrapping) and [Intermediate Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V)
 
 ## 13. Additional notes
-### [Other encountered bugs and features]
+### Other encountered bugs and features
 When running the server, the console may output something along the lines of:
 ```
 W20180921-20:45:38.463(-4)? (STDERR) Note: you are using a pure-JavaScript implementation of bcrypt.

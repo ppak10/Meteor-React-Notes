@@ -1163,7 +1163,8 @@ Here are some options for where you can go next:
 3. Explore additional Meteor tutorials like [WhatsApp clone](http://www.angular-meteor.com/tutorials/whatsapp/meteor/bootstrapping) and [Intermediate Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V)
 
 ## 13. Additional notes
-### Other encountered bugs and features
+### Other additional bugs and features
+#### bcrypt native bug
 When running the server, the console may output something along the lines of:
 ```
 W20180921-20:45:38.463(-4)? (STDERR) Note: you are using a pure-JavaScript implementation of bcrypt.

@@ -2,18 +2,18 @@
 ###### Notes on [Meteor's tutorial](https://www.meteor.com/tutorials/react/creating-an-app) on creating a todo app that integrates both React and Meteor
 
 ## Contents
-1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#1-creating-an-app)
-2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/2-components/README.md#2-components)
-3. [Collections](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/4-forms-and-events/README.md#3-collections)
-4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/4-forms-and-events#4-forms-and-events)
-5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/5-update-and-remove#5-update-and-remove)
-6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/6-running-on-mobile#6-running-on-mobile)
-7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/7-temporary-ui-state#7-temporary-ui-state)
-8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes/blob/8-adding-user-accounts/README.md#8-adding-user-account)
-9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/9-security-with-methods#9-security-with-methods)
-10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/10-publish-and-subscribe#10-publish-and-subscribe)
-11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/11-testing#11-testing)
-12. [Next steps](https://github.com/ppak10/Meteor-Todo-App-Notes/tree/12-next-steps#12-next-steps)
+1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes#1-creating-an-app)
+2. [Components](https://github.com/ppak10/Meteor-Todo-App-Notes#2-components)
+3. [Collections](https://github.com/ppak10/Meteor-Todo-App-Notes#3-collections)
+4. [Forms and events](https://github.com/ppak10/Meteor-Todo-App-Notes#4-forms-and-events)
+5. [Update and remove](https://github.com/ppak10/Meteor-Todo-App-Notes#5-update-and-remove)
+6. [Running on mobile](https://github.com/ppak10/Meteor-Todo-App-Notes#6-running-on-mobile)
+7. [Temporary UI state](https://github.com/ppak10/Meteor-Todo-App-Notes#7-temporary-ui-state)
+8. [Adding user accounts](https://github.com/ppak10/Meteor-Todo-App-Notes#8-adding-user-accounts)
+9. [Security with methods](https://github.com/ppak10/Meteor-Todo-App-Notes#9-security-with-methods)
+10. [Publish and subscribe](https://github.com/ppak10/Meteor-Todo-App-Notes#10-publish-and-subscribe)
+11. [Testing](https://github.com/ppak10/Meteor-Todo-App-Notes#11-testing)
+12. [Next steps](https://github.com/ppak10/Meteor-Todo-App-Notes#12-next-steps)
 
 ## 1. Creating an app
 ### [Creating your first app](https://www.meteor.com/tutorials/react/creating-an-app)

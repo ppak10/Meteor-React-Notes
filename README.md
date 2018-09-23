@@ -1,5 +1,5 @@
 # Meteor-Todo-App-Notes
-###### Notes on [Meteor's tutorial](https://www.meteor.com/tutorials/react/creating-an-app) on creating a todo app that integrates both React and Meteor
+###### Notes on [Meteor's tutorial](https://www.meteor.com/tutorials/react/creating-an-app) on creating a todo app that integrates both [Meteor](https://www.meteor.com) and [React](https://reactjs.org)
 
 ## Contents
 1. [Creating an app](https://github.com/ppak10/Meteor-Todo-App-Notes#1-creating-an-app)

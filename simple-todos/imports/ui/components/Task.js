@@ -4,29 +4,53 @@
 // Description: Script for React Task component
 // ----------------------------------------------------------------------------
 
+// Package Imports ------------------------------------------------------------
 import React, { Component } from 'react';
-
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+// ----------------------------------------------------------------------------
 
+// Component Imports ----------------------------------------------------------
 import { Tasks } from '../../api/tasks.js';
+// ----------------------------------------------------------------------------
 
-// Task component - represents a single todo item
+// Task Component -------------------------------------------------------------
+// Represents a single todo item
 export default class Task extends Component {
+
+  // Checked Method -----------------------------------------------------------
+  // Sets checkmark to indicate that task is finished with strikethrough
   toggleChecked() {
     // Set the checked property to the opposite of its current value
-    Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
+    Meteor.call(
+      'tasks.setChecked',
+      this.props.task._id,
+      !this.props.task.checked
+    );
   }
 
+  // Delete Task Method -------------------------------------------------------
+  // Calls database to remove task
   deleteThisTask() {
-    Meteor.call('tasks.remove', this.props.task._id);
+    Meteor.call(
+      'tasks.remove',
+      this.props.task._id
+    );
   }
 
+  // Private Task Method ------------------------------------------------------
   togglePrivate() {
-    Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
+    Meteor.call(
+      'tasks.setPrivate',
+      this.props.task._id,
+      ! this.props.task.private
+    );
   }
 
+  // Render Method ------------------------------------------------------------
+  // Renders Task component
   render() {
+
     // Give tasks a different className when they are checked off,
     // so that we can style them nicely in CSS
     const taskClassName = classnames({
@@ -48,7 +72,9 @@ export default class Task extends Component {
         />
 
         { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
+          <button className="toggle-private" onClick={
+            this.togglePrivate.bind(this)
+          }>
             { this.props.task.private ? 'Private' : 'Public' }
           </button>
         ) : ''}
@@ -60,3 +86,4 @@ export default class Task extends Component {
     );
   }
 }
+// ----------------------------------------------------------------------------

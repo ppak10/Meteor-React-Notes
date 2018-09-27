@@ -1,10 +1,30 @@
+// ----------------------------------------------------------------------------
+// Original Creator: Meteor
+// File Developer: Peter Pak
+// Description: Script for exporting tasks collection 
+// ----------------------------------------------------------------------------
+
+// Summary --------------------------------------------------------------------
+// Meteor stores persistant data through "Collections" that can be accessed
+// through both server and client. This makes it easy writing view logic easier
+// and also update the component automatically.
+// ----------------------------------------------------------------------------
+
+// Package Imports ------------------------------------------------------------
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+// ----------------------------------------------------------------------------
 
+// Component Exports ----------------------------------------------------------
+// Creates a new MongoDB collection on the server called tasks
+// This also creates a client-side cache connect to the server collection
 export const Tasks = new Mongo.Collection('tasks');
+// ----------------------------------------------------------------------------
 
+// Security Check -------------------------------------------------------------
 if (Meteor.isServer) {
+
   // This code only runs on the server
   // Only publish tasks that are public or belong to the current user
   Meteor.publish('tasks', function tasksPublication() {
@@ -16,8 +36,13 @@ if (Meteor.isServer) {
     });
   });
 }
+// ----------------------------------------------------------------------------
 
+// Meteor Methods -------------------------------------------------------------
 Meteor.methods({
+
+  // Insert Task --------------------------------------------------------------
+  // Method calls database to insert task into database
   'tasks.insert'(text) {
     check(text, String);
 
@@ -33,6 +58,9 @@ Meteor.methods({
       username: Meteor.users.findOne(this.userId).username,
     });
   },
+
+  // Remove Task --------------------------------------------------------------
+  // Method calls database to remove task from database
   'tasks.remove'(taskId) {
     check(taskId, String);
 
@@ -44,6 +72,9 @@ Meteor.methods({
 
     Tasks.remove(taskId);
   },
+
+  // Toggle Task Checkmark ----------------------------------------------------
+  // Method calls database to toggle checkmark on task
   'tasks.setChecked'(taskId, setChecked) {
     check(taskId, String);
     check(setChecked, Boolean);
@@ -56,6 +87,9 @@ Meteor.methods({
 
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
+
+  // Set Task Private ---------------------------------------------------------
+  // Method calls database to set task to private
   'tasks.setPrivate'(taskId, setToPrivate) {
     check(taskId, String);
     check(setToPrivate, Boolean);
@@ -69,4 +103,6 @@ Meteor.methods({
 
     Tasks.update(taskId, { $set: { private: setToPrivate } });
   },
+
 });
+// ----------------------------------------------------------------------------

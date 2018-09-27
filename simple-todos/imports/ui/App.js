@@ -116,9 +116,12 @@ class App extends Component {
     );
   }
 }
+// ----------------------------------------------------------------------------
 
 // App Export -----------------------------------------------------------------
-export default withTracker(() => {
+// Fetches collection data with component wrapped with withTracker and supplies
+// them the underlying App component as a prop
+export default withTracker(() => {  // wraps container with higher order component
   Meteor.subscribe('tasks');
 
   return {
@@ -127,3 +130,4 @@ export default withTracker(() => {
     currentUser: Meteor.user(),
   };
 })(App);
+// ----------------------------------------------------------------------------

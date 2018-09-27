@@ -1,9 +1,15 @@
+// ----------------------------------------------------------------------------
+// Original Creator: Meteor
+// File Developer: Peter Pak
+// Description: Script for React Task component
+// ----------------------------------------------------------------------------
+
 import React, { Component } from 'react';
 
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 
-import { Tasks } from '../api/tasks.js';
+import { Tasks } from '../../api/tasks.js';
 
 // Task component - represents a single todo item
 export default class Task extends Component {

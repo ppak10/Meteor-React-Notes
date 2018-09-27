@@ -1,16 +1,30 @@
+// ----------------------------------------------------------------------------
+// Original Creator: Meteor
+// File Developer: Peter Pak
+// Description: Script for main React App component
+// ----------------------------------------------------------------------------
+
+// Package Imports ------------------------------------------------------------
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+// ----------------------------------------------------------------------------
 
+// Component Imports ----------------------------------------------------------
+import Task from './components/Task.js';
+import AccountsUIWrapper from './components/AccountsUIWrapper.js';
+// ----------------------------------------------------------------------------
+
+// Api Imports ----------------------------------------------------------------
 import { Tasks } from '../api/tasks.js';
+// ----------------------------------------------------------------------------
 
-import Task from './Task.js';
-import AccountsUIWrapper from './AccountsUIWrapper.js';
-
-// App component - represents the whole app
+// React App ------------------------------------------------------------------
+// Represents the whole app
 class App extends Component {
 
+  // Constructor --------------------------------------------------------------
   constructor(props) {
     super(props);
 
@@ -19,6 +33,7 @@ class App extends Component {
     };
   }
 
+  // Handle Submit Method -----------------------------------------------------
   handleSubmit(event) {
     event.preventDefault();
 
@@ -31,12 +46,16 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
+  // Hide Completed Method ----------------------------------------------------
+  // State filter to hide completed tasks
   toggleHideCompleted() {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
   }
 
+  // Render Tasks Method ------------------------------------------------------
+  // Renders Todo Tasks with their attributes
   renderTasks() {
     let filteredTasks = this.props.tasks;
     if (this.state.hideCompleted) {
@@ -56,6 +75,8 @@ class App extends Component {
     });
   }
 
+  // Render Method ------------------------------------------------------------
+  // Renders React components
   render() {
     return (
       <div className="container">
@@ -72,7 +93,7 @@ class App extends Component {
             Hide Completed Tasks
           </label>
 
-          <AccountsUIWrapper />
+          <AccountsUIWrapper /> { /* User AccountsUI Component */ }
 
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
@@ -85,14 +106,18 @@ class App extends Component {
           }
 
         </header>
+
+        { /* Todo Tasks */ }
         <ul>
-          {this.renderTasks()}
+          {this.renderTasks()} { /* Calls render Tasks Method */ }
         </ul>
+
       </div>
     );
   }
 }
 
+// App Export -----------------------------------------------------------------
 export default withTracker(() => {
   Meteor.subscribe('tasks');
 

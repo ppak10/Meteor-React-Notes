@@ -21,11 +21,12 @@ export default class Task extends Component {
   // Checked Method -----------------------------------------------------------
   // Sets checkmark to indicate that task is finished with strikethrough
   toggleChecked() {
+    
     // Set the checked property to the opposite of its current value
-    Meteor.call(
-      'tasks.setChecked',
-      this.props.task._id,
-      !this.props.task.checked
+    Meteor.call(  // Performs a database call
+      'tasks.setChecked', // calls the tasks.setChecked method to edit database
+      this.props.task._id,  // sends current task id prop
+      !this.props.task.checked  // sends opposite of current task checked
     );
   }
 

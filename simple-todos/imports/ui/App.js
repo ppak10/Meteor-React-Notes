@@ -34,15 +34,17 @@ class App extends Component {
   }
 
   // Handle Submit Method -----------------------------------------------------
+  // Method called by onSubmit by form
   handleSubmit(event) {
     event.preventDefault();
 
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-    Meteor.call('tasks.insert', text);
+    // Database call to insert task text
+    Meteor.call('tasks.insert', text); // Uses correct database schema
 
-    // Clear form
+    // Clear form text input
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
@@ -95,6 +97,7 @@ class App extends Component {
 
           <AccountsUIWrapper /> { /* User AccountsUI Component */ }
 
+          { /* Forms Component */ }
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
@@ -125,6 +128,8 @@ export default withTracker(() => {  // wraps container with higher order compone
   Meteor.subscribe('tasks');
 
   return {
+
+    // Calls database to find Tasks sorted by newest at the top
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
     currentUser: Meteor.user(),

@@ -52,7 +52,7 @@ class App extends Component {
   // State filter to hide completed tasks
   toggleHideCompleted() {
     this.setState({
-      hideCompleted: !this.state.hideCompleted,
+      hideCompleted: !this.state.hideCompleted, // sets state to to toggle filter
     });
   }
 
@@ -60,9 +60,12 @@ class App extends Component {
   // Renders Todo Tasks with their attributes
   renderTasks() {
     let filteredTasks = this.props.tasks;
+
+    // Task filter for completion
     if (this.state.hideCompleted) {
       filteredTasks = filteredTasks.filter(task => !task.checked);
     }
+
     return filteredTasks.map((task) => {
       const currentUserId = this.props.currentUser && this.props.currentUser._id;
       const showPrivateButton = task.owner === currentUserId;
@@ -88,16 +91,19 @@ class App extends Component {
           <label className="hide-completed">
             <input
               type="checkbox"
+
               readOnly
               checked={this.state.hideCompleted}
+
               onClick={this.toggleHideCompleted.bind(this)}
             />
             Hide Completed Tasks
           </label>
 
-          <AccountsUIWrapper /> { /* User AccountsUI Component */ }
+          <AccountsUIWrapper /> { /* AccountsUI React wrapper component */ }
 
           { /* Forms Component */ }
+          { /* Conditional to render only if there is a logged in user */ }
           { this.props.currentUser ?
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
@@ -124,14 +130,18 @@ class App extends Component {
 // App Export -----------------------------------------------------------------
 // Fetches collection data with component wrapped with withTracker and supplies
 // them the underlying App component as a prop
-export default withTracker(() => {  // wraps container with higher order component
-  Meteor.subscribe('tasks');
+export default withTracker(() => {  // Wraps container with higher order component
+  Meteor.subscribe('tasks'); // Subscribes to the tasks publication from tasks.js
 
   return {
 
     // Calls database to find Tasks sorted by newest at the top
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
+
+    // Calls database to count uncompleted tasks
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+
+    // Calls Meteor to determine current user
     currentUser: Meteor.user(),
   };
 })(App);

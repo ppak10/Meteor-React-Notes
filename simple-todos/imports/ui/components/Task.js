@@ -21,7 +21,7 @@ export default class Task extends Component {
   // Checked Method -----------------------------------------------------------
   // Sets checkmark to indicate that task is finished with strikethrough
   toggleChecked() {
-    
+
     // Set the checked property to the opposite of its current value
     Meteor.call(  // Performs a database call
       'tasks.setChecked', // calls the tasks.setChecked method to edit database
@@ -72,6 +72,7 @@ export default class Task extends Component {
           onClick={this.toggleChecked.bind(this)}
         />
 
+        { /* Conditional to show private or public option button */ }
         { this.props.showPrivateButton ? (
           <button className="toggle-private" onClick={
             this.togglePrivate.bind(this)
@@ -80,7 +81,9 @@ export default class Task extends Component {
           </button>
         ) : ''}
 
+        { /* Task Text */ }
         <span className="text">
+          { /* Render username before task text */ }
           <strong>{this.props.task.username}</strong>: {this.props.task.text}
         </span>
       </li>

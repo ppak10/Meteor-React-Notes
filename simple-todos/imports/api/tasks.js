@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // Original Creator: Meteor
 // File Developer: Peter Pak
-// Description: Script for exporting tasks collection 
+// Description: Script for exporting tasks collection
 // ----------------------------------------------------------------------------
 
 // Summary --------------------------------------------------------------------
@@ -23,10 +23,10 @@ export const Tasks = new Mongo.Collection('tasks');
 // ----------------------------------------------------------------------------
 
 // Security Check -------------------------------------------------------------
+// This code only runs on the server
 if (Meteor.isServer) {
 
-  // This code only runs on the server
-  // Only publish tasks that are public or belong to the current user
+  // Only publishes specific tasks that are public or belong to the current user
   Meteor.publish('tasks', function tasksPublication() {
     return Tasks.find({
       $or: [
@@ -53,9 +53,9 @@ Meteor.methods({
 
     Tasks.insert({
       text,
-      createdAt: new Date(),
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
+      createdAt: new Date(),  // Current time
+      owner: this.userId, // id of logged in user
+      username: Meteor.users.findOne(this.userId).username, // username of user
     });
   },
 

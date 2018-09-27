@@ -1,10 +1,10 @@
-# Meteor-Todo-App-Notes
+# Meteor-React-Notes
 ###### Notes on [Meteor's tutorial](https://www.meteor.com/tutorials/react/creating-an-app) on creating a todo app that integrates both [Meteor](https://www.meteor.com) and [React](https://reactjs.org)
 
 ## Getting Started
 Once cloning the repository, to get started type the following commands to start the server.
 
-If running the server for the first time locate the Meteor-React-Portfolio directory and type in, otherwise skip directly to the run command:
+If running the server for the first time locate the Meteor-React-Notes directory and type in, otherwise skip directly to the run command:
 ```
 ./install.sh
 ```
